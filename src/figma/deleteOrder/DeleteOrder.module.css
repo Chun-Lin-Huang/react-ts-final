@@ -1,0 +1,181 @@
+.container {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+  font-family: Knewave, sans-serif;
+  padding: 42px 80px;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  max-width: 1227px;
+  flex-direction: column;
+}
+
+.title {
+  color: #978080;
+  font-size: 64px;
+  text-align: center;
+  align-self: center;
+}
+
+.searchForm {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 136px;
+  margin-top: 81px;
+  width: 100%;
+  align-items: center;
+  gap: 36px;
+  font-family: Inter, sans-serif;
+  color: #5b3636;
+  padding: 19px 29px;
+}
+
+.backgroundImage {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.searchLabel {
+  position: relative;
+  text-align: center;
+  align-self: stretch;
+  flex-grow: 1;
+  margin: auto 0;
+  font: 35px Knewave, sans-serif;
+}
+
+.searchInput {
+  position: relative;
+  align-self: stretch;
+  flex-grow: 1;
+  width: 552px;
+  border-radius: 6px;
+  border: 1px solid #978080;
+  background: #fff;
+  min-height: 98px;
+  font-size: 30px;
+  color: #8e8e93;
+  line-height: 1;
+  padding: 38px 15px;
+}
+
+.submitButton {
+  position: relative;
+  align-self: stretch;
+  border-radius: 50px;
+  background-color: rgba(151, 128, 128, 0.24);
+  min-height: 90px;
+  font-size: 48px;
+  font-weight: 600;
+  margin: auto 0;
+  padding: 36px 24px;
+  border: 1px solid #000;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 710px;
+  margin-top: 43px;
+  width: 100%;
+  align-items: start;
+  font-size: 48px;
+  color: #5b3636;
+  padding: 61px 50px;
+}
+
+.fieldContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.fieldIcon {
+  background: #fff;
+  border-radius: 50%;
+  width: 85px;
+  height: 85px;
+}
+
+.actionButtons {
+  align-self: center;
+  display: flex;
+  margin-top: 50px;
+  width: 602px;
+  max-width: 100%;
+  gap: 20px;
+  justify-content: space-between;
+  font: 600 48px/1 Inter, sans-serif;
+}
+
+.actionButton {
+  align-self: stretch;
+  border-radius: 50px;
+  background-color: rgba(151, 128, 128, 0.24);
+  min-height: 81px;
+  padding: 32px 24px;
+  border: 1px solid #000;
+  color: #5b3636;
+}
+
+.danger {
+  color: #d12f2f;
+}
+
+@media (max-width: 991px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .searchForm {
+    max-width: 100%;
+    margin: 40px 5px 0 0;
+    padding: 0 20px;
+  }
+
+  .searchInput {
+    max-width: 100%;
+  }
+
+  .submitButton {
+    font-size: 40px;
+    padding: 0 20px;
+  }
+
+  .detailsContainer {
+    max-width: 100%;
+    margin-top: 40px;
+    font-size: 40px;
+    padding: 0 20px;
+  }
+
+  .actionButtons {
+    margin-top: 40px;
+    font-size: 40px;
+  }
+
+  .actionButton {
+    font-size: 40px;
+    padding: 0 20px;
+  }
+}

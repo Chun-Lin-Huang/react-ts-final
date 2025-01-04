@@ -1,0 +1,148 @@
+.container {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+  font-weight: 400;
+  padding: 42px 80px 82px;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 1227px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  color: #978080;
+  text-align: center;
+  font: 64px Knewave, sans-serif;
+  margin: 0;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  position: relative;
+  min-height: 710px;
+  margin-top: 116px;
+  width: 100%;
+  align-items: start;
+  padding: 50px 47px;
+}
+
+.backgroundImage {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.formContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.formField {
+  display: flex;
+  width: 100%;
+  max-width: 984px;
+  gap: 48px;
+  margin-bottom: 34px;
+  flex-wrap: wrap;
+}
+
+.fieldLabel {
+  display: flex;
+  gap: 10px;
+  color: #5b3636;
+  font: 48px Knewave, sans-serif;
+  align-items: center;
+}
+
+.fieldIcon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  width: 85px;
+}
+
+.label {
+  margin: auto 0;
+}
+
+.input {
+  flex-grow: 1;
+  width: 552px;
+  border-radius: 6px;
+  border: 1px solid #978080;
+  background: #fff;
+  min-height: 98px;
+  padding: 38px 15px;
+  font: 30px Inter, sans-serif;
+  color: #8e8e93;
+}
+
+.buttonGroup {
+  display: flex;
+  margin-top: 60px;
+  width: 672px;
+  max-width: 100%;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.primaryButton, .secondaryButton {
+  border-radius: 16px;
+  min-height: 75px;
+  padding: 29px 24px;
+  font: 40px Knewave, sans-serif;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.primaryButton {
+  background-color: #c58989;
+}
+
+.secondaryButton {
+  background-color: #7e90ac;
+}
+
+@media (max-width: 991px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .wrapper {
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .formContainer {
+    margin-top: 40px;
+    padding: 0 20px;
+  }
+
+  .fieldLabel {
+    font-size: 40px;
+  }
+
+  .buttonGroup {
+    margin-top: 40px;
+  }
+
+  .primaryButton, .secondaryButton {
+    padding: 0 20px;
+  }
+}

@@ -1,0 +1,152 @@
+.container {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+  font-family: Knewave, sans-serif;
+  padding: 49px 80px;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 1227px;
+  flex-direction: column;
+}
+
+.title {
+  color: #978080;
+  font-size: 64px;
+  text-align: center;
+  align-self: center;
+}
+
+.searchForm {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 136px;
+  margin-top: 81px;
+  width: 100%;
+  align-items: center;
+  gap: 22px;
+  font-family: Inter, sans-serif;
+  padding: 19px 35px;
+}
+
+.searchLabel {
+  color: #5b3636;
+  text-align: center;
+  font: 35px Knewave, sans-serif;
+}
+
+.searchInput {
+  width: 552px;
+  border-radius: 6px;
+  border: 1px solid #978080;
+  background: #fff;
+  min-height: 98px;
+  font-size: 30px;
+  color: #8e8e93;
+  padding: 38px 15px;
+}
+
+.searchButton {
+  width: 100%;
+  border-radius: 50px;
+  background-color: rgba(151, 128, 128, 0.24);
+  min-height: 90px;
+  font-size: 48px;
+  color: #d12f2f;
+  font-weight: 600;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 710px;
+  margin-top: 39px;
+  width: 100%;
+  align-items: start;
+  font-size: 48px;
+  color: #5b3636;
+  padding: 61px 56px;
+}
+
+.infoRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 38px;
+}
+
+.circleIcon {
+  background-color: #fff;
+  border-radius: 50%;
+  width: 85px;
+  height: 85px;
+}
+
+.infoLabel {
+  align-self: start;
+}
+
+.cancelButton {
+  align-self: center;
+  border-radius: 50px;
+  background-color: rgba(151, 128, 128, 0.24);
+  margin-top: 39px;
+  min-height: 81px;
+  width: 206px;
+  color: #5b3636;
+  font: 600 48px/1 Inter, sans-serif;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .wrapper {
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .searchForm {
+    margin: 40px 6px 0 0;
+    padding: 0 20px;
+  }
+
+  .searchInput {
+    max-width: 100%;
+  }
+
+  .searchButton {
+    font-size: 40px;
+    padding: 0 20px;
+  }
+
+  .infoContainer {
+    max-width: 100%;
+    font-size: 40px;
+    padding: 0 20px;
+  }
+
+  .infoRow {
+    margin: 40px 0 0 10px;
+  }
+
+  .cancelButton {
+    font-size: 40px;
+    padding: 0 20px;
+  }
+}
