@@ -5,7 +5,7 @@ import { Menu } from '../figma/menu/menu';
 function App() {
   return (
     <div className="container">
-      <Menu />
+      <Menu /> /** 返回菜單*/
     </div>
   );
 }
