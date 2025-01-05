@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './DeleteOrder.module.css';
 import { OrderDetails } from './OrderDetails';
-import { ActionButton } from './ActionButton';
+import { ActionButton } from './Button';
 
 export const DeleteOrder: React.FC = () => {
   const orderFields = [

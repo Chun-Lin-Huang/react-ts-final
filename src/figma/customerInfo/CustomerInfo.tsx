@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // 引入 useNavigate
 import styles from './CustomerInfo.module.css';
 import { FormField } from './FormField';
 import { Button } from './Button';
-import { useCart } from '../CartconText'; 
+import { useCart } from '../CartconText'; // 引入購物車上下文
 import { menuItems } from '../menu/data';
-import { asyncPost } from '../../utils/fetch';  // 載入 asyncPost 函數
-import { api } from '../../enum/api'; 
+import { asyncGet } from '../../utils/fetch'; // 引入 API 請求工具
+import { api } from '../../enum/api'; // 引入 API 端點
 
 const formFields = [
   { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/904d213115062545fbf487cfe2c2d51aa34efbc9cda1c6d9a34347e9b21787f5?placeholderIfAbsent=true&apiKey=e50fb59ec52546f09fda3505e86b748a", label: "姓名：", placeholder: "輸入姓名" },
@@ -17,31 +17,11 @@ const formFields = [
 ];
 
 export const CustomerInfo: React.FC = () => {
-  const { quantities } = useCart(); 
-  const navigate = useNavigate(); 
-  const [customerInfo, setCustomerInfo] = useState<any>(null); 
-  const [remark, setRemark] = useState<string>(''); 
+  const { quantities } = useCart(); // 從上下文中獲取購物車數據
+  const navigate = useNavigate(); // 初始化 useNavigate
 
-  const [loading, setLoading] = useState(true);  // 加載狀態
 
-  useEffect(() => {
-    // 使用 asyncPost 從 API 獲取顧客資料
-    asyncPost(api.submitOrder, {})
-      .then((res) => {
-        if (res.code === 200) {
-          setCustomerInfo(res.body);
-        } else {
-          console.error('無法獲取顧客資料:', res.message);
-        }
-      })
-      .catch((err) => {
-        console.error('API 請求錯誤:', err);
-      })
-      .finally(() => {
-        setLoading(false); // 請求結束後更新狀態
-      });
-  }, []);
-
+  // 將購物車的商品數據與商品詳細資料關聯
   const itemsInCart = Object.keys(quantities).map((id) => {
     const itemId = parseInt(id);
     const item = menuItems.find((menuItem) => menuItem.id === itemId);
@@ -53,43 +33,25 @@ export const CustomerInfo: React.FC = () => {
     };
   });
 
+  // 計算總金額
   const totalAmount = itemsInCart.reduce(
     (total, item) => total + item.price * item.quantity,
     0
   );
 
+  // 將購物車內容轉換為顯示文本
   const cartContent = itemsInCart
-    .filter((item) => item.quantity > 0)
+    .filter((item) => item.quantity > 0) // 只顯示有購買的商品
     .map((item) => `${item.name} x${item.quantity}`).join(", ");
 
-  // 提交訂單
-  const handleConfirm = async () => {
-    if (!customerInfo) {
-      console.error('顧客資料尚未加載完畢');
-      return;
-    }
-
-    const orderData = {
-      customerInfo,
-      cartContent,
-      totalAmount,
-      remark,
-    };
-
-    try {
-      const response = await asyncPost(api.submitOrder, orderData); // 使用新的 API 請求
-      if (response.code === 200) {
-        navigate('/order');
-      } else {
-        console.error('提交訂單失敗:', response.message);
-      }
-    } catch (err) {
-      console.error('提交訂單時發生錯誤:', err);
-    }
+  // 點擊確定按鈕時觸發跳轉
+  const handleConfirm = () => {
+    navigate('/order'); // 跳轉到 Order 頁面
   };
 
+  // 點擊取消按鈕時返回到 Check 頁面
   const handleCancel = () => {
-    navigate('/check'); 
+    navigate('/check'); // 返回到 Check 頁面
   };
 
   return (
@@ -100,7 +62,7 @@ export const CustomerInfo: React.FC = () => {
           <img
             loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/45a22368b7ce5ef8f077881b98770f92cf841392d0f50d3b9cd9c16cd38eafab?placeholderIfAbsent=true&apiKey=e50fb59ec52546f09fda3505e86b748a"
-            alt="Background"
+            alt=""
             className={styles.backgroundImage}
           />
           <div className={styles.formContent}>
@@ -112,8 +74,8 @@ export const CustomerInfo: React.FC = () => {
                     icon={field.icon}
                     label={field.label}
                     placeholder={field.placeholder}
-                    value={cartContent} 
-                    disabled={true} 
+                    value={cartContent} // 顯示購物車內容
+                    disabled={true} // 禁用輸入框
                   />
                 );
               } else if (field.label === "總金額") {
@@ -123,19 +85,8 @@ export const CustomerInfo: React.FC = () => {
                     icon={field.icon}
                     label={field.label}
                     placeholder={field.placeholder}
-                    value={`NT$ ${totalAmount}`} 
-                    disabled={true} 
-                  />
-                );
-              } else if (field.label === "備註：") {
-                return (
-                  <FormField
-                    key={index}
-                    icon={field.icon}
-                    label={field.label}
-                    placeholder={field.placeholder}
-                    value={remark} 
-                    onChange={(e) => setRemark(e.target.value)} 
+                    value={`NT$ ${totalAmount}`} // 顯示總金額
+                    disabled={true} // 禁用輸入框
                   />
                 );
               } else {
@@ -151,8 +102,8 @@ export const CustomerInfo: React.FC = () => {
             })}
           </div>
           <div className={styles.buttonGroup}>
-            <Button variant="primary" onClick={handleCancel}>取消</Button>
-            <Button variant="secondary" onClick={handleConfirm}>確定</Button>
+            <Button variant="primary" onClick={handleCancel}>取消</Button> {/* 取消按鈕，返回到 Check 頁面 */}
+            <Button variant="secondary" onClick={handleConfirm}>確定</Button> {/* 確定按鈕，跳轉到 Order 頁面 */}
           </div>
         </form>
       </div>
