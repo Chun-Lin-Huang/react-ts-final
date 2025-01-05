@@ -1,11 +1,11 @@
 import React from 'react';
 //import { Menu } from '../menu/Menu';
-import { Menu } from '../figma/menu/menu';
+import { Orders } from '../figma/orders/Order';
 
 function App() {
   return (
     <div className="container">
-      <Menu />
+      <Orders />
     </div>
   );
 }
