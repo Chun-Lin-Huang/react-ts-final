@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom'; // 引入 useLocation
 import styles from './Orders.module.css';
 import { OrderCard } from './OrderCard';
 import { ActionButton } from './ActionButton';
@@ -7,6 +8,7 @@ import { api } from '../../enum/api';
 import { Order } from '../../interface/Order'; // 匯入 Order 介面
 
 export const Orders: React.FC = () => {
+  const location = useLocation(); // 獲取路由狀態
   const [orders, setOrders] = useState<Order[]>([]); // 儲存從 API 獲取的訂單資料
   const [isLoading, setIsLoading] = useState<boolean>(true); // 加載狀態
   const [error, setError] = useState<string | null>(null); // 錯誤處理
@@ -39,6 +41,18 @@ export const Orders: React.FC = () => {
   return (
     <div className={styles.ordersContainer}>
       <h1 className={styles.orderTitle}>Order</h1>
+
+      {location.state && (
+        <div>
+          <h2>訂單資料</h2>
+          <p>姓名：{location.state.formData.name}</p>
+          <p>電話：{location.state.formData.phone}</p>
+          <p>備註：{location.state.formData.note}</p>
+          <p>總金額：{`NT$ ${location.state.totalAmount}`}</p>
+          <p>內容：</p>
+          <pre>{location.state.cartContent}</pre>
+        </div>
+      )}
 
       {isLoading ? (
         <p>載入中...</p>

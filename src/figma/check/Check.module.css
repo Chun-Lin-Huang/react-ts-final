@@ -8,14 +8,17 @@
   font-weight: 400;
   white-space: nowrap;
   padding: 42px 80px 82px;
+  width: 100%;  /* 确保容器宽度为100% */
+  min-height: 100vh;  /* 确保容器至少撑满视口高度 */
 }
 
 .content {
   display: flex;
-  width: 100%;
-  max-width: 1227px;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  max-width: 1227px;
+  justify-content: center;  /* 确保垂直居中 */
 }
 
 .title {
@@ -132,4 +135,23 @@
     white-space: initial;
     padding: 0 20px;
   }
+}
+
+.orderItems {
+  display: flex;
+  flex-direction: column;
+  align-items: center;      /* 水平居中 */
+  justify-content: center;  /* 垂直居中 */
+}
+
+.orderItem {
+  display: flex;
+  justify-content: center;  /* 水平居中 */
+  align-items: center;      /* 垂直居中 */
+  margin: 10px 0;           /* 商品项之间的间距 */
+  font-size: 48px;          /* 设置字体大小 */
+}
+
+.orderItem span {
+  margin: 0 10px;  /* 每个元素之间的水平间距，微调 */
 }

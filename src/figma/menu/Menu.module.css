@@ -166,3 +166,23 @@
 .cartButton:hover {
   background: #f0f0f0;
 }
+
+.cartIcon {
+  font-size: 30px; /* 設定購物車圖標的大小 */
+  margin-right: 8px; /* 圖標和數字之間的間距 */
+  color: rgb(151, 128, 128);
+}
+
+.cartCount {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 5px;
+  font-size: 14px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 20px;
+  height: 20px;
+  text-align: center;
+}

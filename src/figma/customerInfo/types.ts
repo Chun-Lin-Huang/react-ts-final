@@ -3,6 +3,8 @@ export interface FormFieldProps {
   label: string;
   value?: string;
   placeholder?: string;
+  disabled?: boolean;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;  // 添加 onChange 屬性
 }
 
 export interface ButtonProps {
