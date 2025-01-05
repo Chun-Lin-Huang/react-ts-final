@@ -21,13 +21,13 @@ export const Check: React.FC = () => {
     };
   });
 
-  const total = itemsInCart.reduce((total, item) => {
+  const totalAmount = itemsInCart.reduce((total, item) => {
     return total + item.quantity * item.price;
   }, 0);
 
   const handleConfirm = () => {
     // 在這裡只傳遞資料並跳轉到 CustomerInfo 頁面
-    navigate('/customer-info', { state: { quantities, total } });
+    navigate('/customer-info', { state: { quantities, totalAmount } });
   };
 
   const handleCancel = () => {
@@ -57,7 +57,7 @@ export const Check: React.FC = () => {
                 </div>
               ))}
           </div>
-          <LabelWithIcon text={`總金額：NT$ ${total}`} />
+          <LabelWithIcon text={`總金額：NT$ ${totalAmount}`} />
         </div>
         <div className={styles.actionButtons}>
           <ActionButton label="取消" variant="primary" onClick={handleCancel} />
