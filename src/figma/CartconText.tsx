@@ -3,7 +3,8 @@ import React, { createContext, useContext, useState } from 'react';
 interface CartContextType {
   quantities: Record<number, number>;
   setQuantities: React.Dispatch<React.SetStateAction<Record<number, number>>>;
-  removeZeroQuantityItems: () => void; // 新增刪除數量為 0 的商品的方法
+  removeZeroQuantityItems: () => void;
+  setCart: (cart: Record<number, number>) => void; // 用來清空購物車
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -24,8 +25,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
   };
 
+  // 用來清空購物車的函數
+  const setCart = (cart: Record<number, number>) => {
+    setQuantities(cart); // 清空購物車或更新為新內容
+  };
+
   return (
-    <CartContext.Provider value={{ quantities, setQuantities, removeZeroQuantityItems }}>
+    <CartContext.Provider value={{ quantities, setQuantities, removeZeroQuantityItems, setCart }}>
       {children}
     </CartContext.Provider>
   );

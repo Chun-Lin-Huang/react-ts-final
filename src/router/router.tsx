@@ -5,6 +5,8 @@ import { Check } from '../figma/check/Check';
 import { Menu } from '../figma/menu/menu';
 import { CustomerInfo } from '../figma/customerInfo/CustomerInfo';
 import { Orders } from '../figma/orders/Order';
+import { DeleteOrder } from "../figma/deleteOrder/DeleteOrder";
+import { OrderModify } from "../figma/orderModify/OrderModify";
 
 export const router = createHashRouter([
     {
@@ -46,5 +48,9 @@ export const router = createHashRouter([
                 <Orders /> {/* Order頁面 */}
             </CartProvider>
         ),
+    },
+    {
+        path: "/delete",  
+        element: <DeleteOrder /> /* DeleteOrder 頁面 */
     },
 ]);

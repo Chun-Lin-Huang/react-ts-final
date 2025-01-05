@@ -14,5 +14,5 @@ export interface OrderListProps {
 export interface ActionButtonProps {
   label: string;
   onClick: () => void;
-  variant?: 'delete' | 'edit' | 'search';
+  variant?: 'delete' | 'edit' | 'search' | 'back';
 }

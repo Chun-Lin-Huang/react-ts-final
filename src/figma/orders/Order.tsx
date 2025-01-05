@@ -1,30 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom'; // 引入 useLocation
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './Orders.module.css';
 import { OrderCard } from './OrderCard';
 import { ActionButton } from './ActionButton';
 import { asyncGet } from '../../utils/fetch';
 import { api } from '../../enum/api';
-import { Order } from '../../interface/Order'; // 匯入 Order 介面
+import { Order } from '../../interface/Order';
 
 export const Orders: React.FC = () => {
-  const location = useLocation(); // 獲取路由狀態
-  const [orders, setOrders] = useState<Order[]>([]); // 儲存從 API 獲取的訂單資料
-  const [isLoading, setIsLoading] = useState<boolean>(true); // 加載狀態
-  const [error, setError] = useState<string | null>(null); // 錯誤處理
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    navigate('/delete'); // 跳转到 DeleteOrder 页面
+  };
+  
   const handleEdit = () => {};
   const handleSearch = () => {};
 
+  // 返回菜單的處理函數
+  const handleGoBack = () => {
+    navigate('/menu'); // 導航到菜單頁面
+  };
+
   useEffect(() => {
-    // 使用 async 函式呼叫 API
     const fetchOrders = async () => {
       try {
         setIsLoading(true);
-        const response = await asyncGet(api.getOrders); // 確保這個 API 路徑正確
+        const response = await asyncGet(api.getOrders);
         if (response.code === 200) {
-          setOrders(response.body as Order[]); // 明確轉型為 Order[]
+          setOrders(response.body as Order[]);
         } else {
           setError('無法取得訂單資料，請稍後再試。');
         }
@@ -70,6 +78,8 @@ export const Orders: React.FC = () => {
         <ActionButton label="刪除" onClick={handleDelete} variant="delete" />
         <ActionButton label="修改" onClick={handleEdit} variant="edit" />
         <ActionButton label="查詢" onClick={handleSearch} variant="search" />
+        {/* 使用 ActionButton 實現返回菜單 */}
+        <ActionButton label="返回菜單" onClick={handleGoBack} variant="back" />
       </div>
     </div>
   );

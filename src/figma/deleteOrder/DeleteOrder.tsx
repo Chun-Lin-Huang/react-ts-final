@@ -2,8 +2,11 @@ import React from 'react';
 import styles from './DeleteOrder.module.css';
 import { OrderDetails } from './OrderDetails';
 import { ActionButton } from './Button';
+import { useNavigate } from 'react-router-dom';  // 导入 useNavigate
 
 export const DeleteOrder: React.FC = () => {
+  const navigate = useNavigate();  // 获取 navigate 函数
+
   const orderFields = [
     { icon: <div className={styles.iconCircle} />, label: '姓名：' },
     { icon: <div className={styles.iconCircle} />, label: '電話：' },
@@ -11,6 +14,10 @@ export const DeleteOrder: React.FC = () => {
     { icon: <div className={styles.iconCircle} />, label: '總金額：' },
     { icon: <div className={styles.iconCircle} />, label: '備註：' }
   ];
+
+  const handleCancel = () => {
+    navigate('/order');  // 跳转到 Order 页面
+  };
 
   return (
     <div className={styles.container}>
@@ -42,7 +49,7 @@ export const DeleteOrder: React.FC = () => {
         <OrderDetails fields={orderFields} />
 
         <div className={styles.actionButtons}>
-          <ActionButton variant="primary">取消</ActionButton>
+          <ActionButton variant="primary" onClick={handleCancel}>取消</ActionButton>  {/* 点击取消按钮时跳转 */}
           <ActionButton variant="danger">刪除</ActionButton>
         </div>
       </div>
