@@ -1,74 +1,93 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // 引入 useNavigate
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { asyncPut } from '../../utils/fetch'; // 假设 asyncPut 是封装的 PUT 请求工具
+import { api } from '../../enum/api'; // 引入 API 枚举
 import styles from './OrderModify.module.css';
 import { OrderField } from './OrderField';
-import { CircleIconLabel } from './CircleIconLabel';
 import { ActionButton } from './ActionButton';
 
 export const OrderModify: React.FC = () => {
-  const navigate = useNavigate(); // 初始化 navigate
+  const navigate = useNavigate();
+
+  const [orderData, setOrderData] = useState({
+    sid: '',
+    姓名: '',
+    電話: '',
+    備註: ''
+  });
+
+  // 更新输入框的值
+  const handleInputChange = (field: string, value: string) => {
+    setOrderData((prevData) => ({
+      ...prevData,
+      [field]: value
+    }));
+  };
+
+  // 提交更新请求
+  const handleSubmit = async () => {
+  if (!orderData.sid) {
+    alert('請輸入 SID！');
+    return;
+  }
+
+  try {
+    // 调用 API 更新数据
+    const response = await asyncPut(api.update, {
+      sid: orderData.sid,
+      name: orderData.姓名,
+      phoneNumber: orderData.電話,
+      remark: orderData.備註
+    });
+
+    console.log('後端響應:', response);
+
+    // 修改判断逻辑以适配后端返回的格式
+    if (response && response.code === 200) {
+      alert(response.message || '更新成功！'); // 使用后端返回的 message
+      navigate('/order'); // 跳转到订单页面
+    } else {
+      alert(response.message || '更新失敗：未知錯誤');
+    }
+  } catch (error) {
+    console.error('更新失敗:', error);
+    alert('更新時發生錯誤，請稍後再試！');
+  }
+};
+
+
+  // 取消操作
+  const handleCancel = () => {
+    navigate('/Order'); // 跳转到订单页面
+  };
 
   const orderFields = [
-    { label: '編號：', value: '訂單編號' },
-    { label: '姓名：', value: '修改姓名' },
-    { label: '電話：', value: '修改電話' },
-    { label: '備註：', value: '修改備註' }
+    { label: ' SID ', value: orderData.sid, field: 'sid', placeholder: '輸入 SID' },
+    { label: ' 姓名 ', value: orderData.姓名, field: '姓名', placeholder: '輸入姓名' },
+    { label: ' 電話 ', value: orderData.電話, field: '電話', placeholder: '輸入電話' },
+    { label: ' 備註 ', value: orderData.備註, field: '備註', placeholder: '輸入備註' }
   ];
-
-  const orderDetails = [
-    '姓名：',
-    '電話：',
-    '內容：',
-    '總金額：',
-    '備註：'
-  ];
-
-  const handleCancel = () => {
-    navigate('/Order'); // 跳轉到 /Order 頁面
-  };
 
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <h1 className={styles.title}>Modify</h1>
-        
-        <section className={styles.modifySection}>
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/571504efed67b1230a49727537e6abcbac636c9641681fe4f32c253089c752dd?placeholderIfAbsent=true&apiKey=e50fb59ec52546f09fda3505e86b748a"
-            className={styles.backgroundImage}
-            alt=""
-          />
-          
-          <form className={styles.orderForm}>
-            {orderFields.map((field, index) => (
-              <OrderField
-                key={index}
-                label={field.label}
-                value={field.value}
-              />
-            ))}
-            <ActionButton text="修改" />
-          </form>
-        </section>
+        <h1 className={styles.title}>Modify Order</h1>
 
-        <section className={styles.detailsSection}>
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c2c166c38cf15b4ef0486d7795ba1f184102ac42f8ddcca69e4ab213bf8e7bd?placeholderIfAbsent=true&apiKey=e50fb59ec52546f09fda3505e86b748a"
-            className={styles.backgroundImage}
-            alt=""
-          />
-          
-          {orderDetails.map((label, index) => (
-            <CircleIconLabel
+        <form className={styles.orderForm}>
+          {orderFields.map((field, index) => (
+            <OrderField
               key={index}
-              label={label}
+              label={field.label}
+              value={field.value}
+              onChange={(e) => handleInputChange(field.field, e.target.value)}
+              placeholder={field.placeholder}
             />
           ))}
-        </section>
+        </form>
 
         <div className={styles.actionButtons}>
           <ActionButton text="取消" onClick={handleCancel} />
-          <ActionButton text="確定" />
+          <ActionButton text="修改" onClick={handleSubmit} />
         </div>
       </div>
     </div>

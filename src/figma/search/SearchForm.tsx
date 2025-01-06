@@ -1,9 +1,15 @@
 import React from 'react';
 import styles from './Search.module.css';
 
-export const SearchForm: React.FC = () => {
+interface SearchFormProps {
+  onSearch: () => void;
+  setSid: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const SearchForm: React.FC<SearchFormProps> = ({ onSearch, setSid }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    onSearch(); // 調用 onSearch 來進行搜尋
   };
 
   return (
@@ -17,6 +23,7 @@ export const SearchForm: React.FC = () => {
         className={styles.searchInput}
         placeholder="訂單編號"
         aria-label="訂單編號"
+        onChange={(e) => setSid(e.target.value)} // 更新 sid
       />
       <button type="submit" className={styles.searchButton}>
         查詢
