@@ -18,8 +18,12 @@ export const Orders: React.FC = () => {
     navigate('/delete'); // 跳转到 DeleteOrder 页面
   };
   
-  const handleEdit = () => {};
-  const handleSearch = () => {};
+  const handleEdit = () => {
+    navigate('/update');
+  };
+  const handleSearch = () => {
+    navigate('/search');
+  };
 
   // 返回菜單的處理函數
   const handleGoBack = () => {

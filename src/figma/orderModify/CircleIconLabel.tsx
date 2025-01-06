@@ -10,4 +10,3 @@ export const CircleIconLabel: React.FC<CircleIconLabelProps> = ({ label }) => {
     </div>
   );
 };
-</

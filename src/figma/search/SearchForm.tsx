@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './Search.module.css';
-import { SearchFormData } from './types';
 
 export const SearchForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {

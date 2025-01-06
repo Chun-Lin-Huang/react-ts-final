@@ -49,7 +49,7 @@ export const DeleteOrder: React.FC = () => {
         <OrderDetails fields={orderFields} />
 
         <div className={styles.actionButtons}>
-          <ActionButton variant="primary" onClick={handleCancel}>取消</ActionButton>  {/* 点击取消按钮时跳转 */}
+          <ActionButton variant="primary" onClick={handleCancel}>取消</ActionButton> 
           <ActionButton variant="danger">刪除</ActionButton>
         </div>
       </div>

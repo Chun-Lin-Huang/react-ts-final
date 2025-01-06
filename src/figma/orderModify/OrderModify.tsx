@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // 引入 useNavigate
 import styles from './OrderModify.module.css';
 import { OrderField } from './OrderField';
 import { CircleIconLabel } from './CircleIconLabel';
 import { ActionButton } from './ActionButton';
 
 export const OrderModify: React.FC = () => {
+  const navigate = useNavigate(); // 初始化 navigate
+
   const orderFields = [
     { label: '編號：', value: '訂單編號' },
     { label: '姓名：', value: '修改姓名' },
@@ -19,6 +22,10 @@ export const OrderModify: React.FC = () => {
     '總金額：',
     '備註：'
   ];
+
+  const handleCancel = () => {
+    navigate('/Order'); // 跳轉到 /Order 頁面
+  };
 
   return (
     <div className={styles.container}>
@@ -60,7 +67,7 @@ export const OrderModify: React.FC = () => {
         </section>
 
         <div className={styles.actionButtons}>
-          <ActionButton text="取消" />
+          <ActionButton text="取消" onClick={handleCancel} />
           <ActionButton text="確定" />
         </div>
       </div>

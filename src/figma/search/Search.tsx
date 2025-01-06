@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // 引入 useNavigate
 import styles from './Search.module.css';
 import { SearchForm } from './SearchForm';
 import { InfoItem } from './InfoItem';
 
 export const Search: React.FC = () => {
+  const navigate = useNavigate(); // 初始化 navigate
+
   const infoItems = [
     { label: '姓名：', className: styles.nameInfo },
     { label: '電話：', className: styles.phoneInfo },
@@ -11,6 +14,10 @@ export const Search: React.FC = () => {
     { label: '總金額：', className: styles.amountInfo },
     { label: '備註：', className: styles.remarkInfo }
   ];
+
+  const handleCancel = () => {
+    navigate('/Order'); // 跳轉到 /Order 頁面
+  };
 
   return (
     <div className={styles.container}>
@@ -22,7 +29,9 @@ export const Search: React.FC = () => {
             <InfoItem key={index} {...item} />
           ))}
         </div>
-        <button className={styles.cancelButton}>取消</button>
+        <button className={styles.cancelButton} onClick={handleCancel}>
+          取消
+        </button>
       </div>
     </div>
   );
