@@ -47,7 +47,7 @@
 
 .searchLabel {
   position: relative;
-  text-align: center;
+  text-align: left;
   align-self: stretch;
   flex-grow: 1;
   margin: auto 0;
@@ -71,15 +71,16 @@
 
 .submitButton {
   position: relative;
-  align-self: stretch;
+  align-self: flex-end; /* 將按鈕對齊到右側 */
   border-radius: 50px;
   background-color: rgba(151, 128, 128, 0.24);
-  min-height: 90px;
-  font-size: 48px;
+  min-height: 70px; /* 減小按鈕的高度 */
+  font-size: 36px; /* 減小字體大小 */
   font-weight: 600;
-  margin: auto 0;
-  padding: 36px 24px;
-  border: 1px solid #000;
+  margin-top: 30px; /* 調整上下邊距 */
+  margin-right: 20px; /* 向右移動按鈕 */
+  padding: 20px 30px; /* 減小內邊距 */
+  border: 1px solid #5b3636;
 }
 
 .detailsContainer {
@@ -124,9 +125,10 @@
   align-self: stretch;
   border-radius: 50px;
   background-color: rgba(151, 128, 128, 0.24);
-  min-height: 81px;
-  padding: 32px 24px;
-  border: 1px solid #000;
+  min-height: 70px; /* 與 submitButton 保持一致的高度 */
+  font-size: 36px; /* 與 submitButton 保持一致的字體大小 */
+  padding: 20px 30px; /* 與 submitButton 保持一致的內邊距 */
+  border: 1px solid #5b3636; /* 使用與 submitButton 相同的邊框顏色 */
   color: #5b3636;
 }
 

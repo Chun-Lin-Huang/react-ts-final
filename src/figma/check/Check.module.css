@@ -1,36 +1,28 @@
 .container {
   background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  align-items: center;
   font-family: Knewave, sans-serif;
   font-weight: 400;
   white-space: nowrap;
   padding: 42px 80px 82px;
   width: 100%;  /* 确保容器宽度为100% */
   min-height: 100vh;  /* 确保容器至少撑满视口高度 */
+  margin: 0 auto;  /* 水平居中容器 */
 }
 
 .content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 1227px;
-  justify-content: center;  /* 确保垂直居中 */
+  width: 1227px;  /* 固定宽度 */
+  margin: 0 auto;  /* 水平居中 */
+  /* 移除flexbox布局 */
+  text-align: center;  /* 使文字居中 */
 }
 
 .title {
   color: rgb(151, 128, 128);
   font-size: 64px;
-  text-align: center;
 }
 
 .orderSection {
-  display: flex;
-  flex-direction: column;
-  align-self: stretch;
+  display: block;  /* 改為塊級元素 */
   position: relative;
   min-height: 710px;
   margin-top: 117px;
@@ -51,7 +43,6 @@
 
 .labelWithIcon {
   position: relative;
-  align-self: start;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -71,13 +62,15 @@
 .actionButtons {
   display: flex;
   margin-top: 60px;
-  width: 673px;
-  max-width: 100%;
+  width: 100%;  /* 確保佔滿父容器的寬度 */
+  max-width: 673px;  /* 限制最大寬度 */
   gap: 20px;
   font-size: 40px;
   color: #fff;
   text-align: center;
-  justify-content: space-between;
+  justify-content: space-between;  /* 按鈕間距兩側拉開 */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .primaryButton, .secondaryButton {
@@ -106,8 +99,7 @@
   }
 
   .content {
-    max-width: 100%;
-    white-space: initial;
+    width: 100%;  /* 讓內容寬度隨螢幕調整 */
   }
 
   .title {
@@ -115,10 +107,8 @@
   }
 
   .orderSection {
-    max-width: 100%;
     margin-top: 40px;
     font-size: 40px;
-    white-space: initial;
     padding: 0 20px;
   }
 
@@ -128,11 +118,9 @@
 
   .actionButtons {
     margin-top: 40px;
-    white-space: initial;
   }
 
   .primaryButton, .secondaryButton {
-    white-space: initial;
     padding: 0 20px;
   }
 }
